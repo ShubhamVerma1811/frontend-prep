@@ -1,13 +1,13 @@
 {
-  "name": "js-interview-practice",
-  "version": "1.0.0",
-  "description": "JavaScript and TypeScript interview practice questions",
-  "main": "index.js",
-  "scripts": {
-    "test": "vitest"
-  },
-  "devDependencies": {
-    "typescript": "~5.8.3",
-    "vitest": "^3.2.4"
-  }
+	"name": "js-interview-practice",
+	"version": "1.0.0",
+	"description": "JavaScript and TypeScript interview practice questions",
+	"main": "index.js",
+	"scripts": {
+		"test": "vitest"
+	},
+	"devDependencies": {
+		"typescript": "~5.8.3",
+		"vitest": "^3.2.4"
+	}
 }

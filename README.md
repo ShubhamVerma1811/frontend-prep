@@ -2,10 +2,14 @@
 
 A comprehensive repository for frontend development interview preparation, covering JavaScript fundamentals, React concepts, and practical coding exercises.
 
+> Note: All the data is taken from publicly available domain at that time.
+
 ## 📁 Repository Structure
 
 ### `/JS` - JavaScript & TypeScript Practice
+
 Core JavaScript and TypeScript interview questions and solutions:
+
 - **Async Programming** - Promise handling, async/await patterns
 - **Data Structures** - Common implementations (arrays, objects, etc.)
 - **Algorithms** - Problem-solving exercises
@@ -13,7 +17,9 @@ Core JavaScript and TypeScript interview questions and solutions:
 - **Core Concepts** - Fundamental JS/TS demonstrations
 
 ### `/ui` - React + TypeScript Application
+
 Modern React application built with:
+
 - **React 19** with TypeScript
 - **Vite** for fast development and building
 - **Tailwind CSS** for styling
@@ -23,6 +29,7 @@ Modern React application built with:
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (latest LTS version)
 - pnpm (recommended package manager)
 
@@ -40,12 +47,14 @@ pnpm install
 ### Running the Projects
 
 #### JavaScript Practice
+
 ```bash
 cd JS
 pnpm test
 ```
 
 #### React UI Application
+
 ```bash
 cd ui
 pnpm dev        # Start development server
@@ -56,18 +65,21 @@ pnpm test       # Run tests
 ## 🛠️ Tech Stack
 
 ### Core Technologies
+
 - **JavaScript/TypeScript** - Primary languages
 - **React 19** - Frontend framework
 - **Vite** - Build tool and dev server
 - **Tailwind CSS** - Utility-first CSS framework
 
 ### Development Tools
+
 - **ESLint** - Code linting
 - **Vitest** - Testing framework
 - **pnpm** - Package management
 - **TypeScript** - Type safety
 
 ### Key Dependencies
+
 - React & React DOM
 - Vite plugins for React
 - ESLint plugins for React
@@ -77,6 +89,7 @@ pnpm test       # Run tests
 ## 📚 Learning Resources
 
 This repository is structured to help with:
+
 - **Algorithm Practice** - Common coding interview problems
 - **JavaScript Fundamentals** - Core language concepts
 - **React Development** - Modern React patterns and practices
@@ -87,6 +100,7 @@ This repository is structured to help with:
 ## 🤝 Contributing
 
 Feel free to contribute by:
+
 - Adding new practice problems
 - Improving existing solutions
 - Enhancing documentation
