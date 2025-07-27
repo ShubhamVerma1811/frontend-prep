@@ -6,7 +6,8 @@
 		"format": "biome format --write .",
 		"format:check": "biome format .",
 		"check": "biome check .",
-		"check:fix": "biome check --apply ."
+		"check:fix": "biome check --apply .",
+		"update-readme": "bun run scripts/update-readme.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.1.2",

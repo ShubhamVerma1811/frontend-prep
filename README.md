@@ -23,8 +23,37 @@ Modern React application built with:
 - **React 19** with TypeScript
 - **Vite** for fast development and building
 - **Tailwind CSS** for styling
-- **ESLint** for code quality
+- **Biome** for linting and formatting
 - **Vitest** for testing
+
+#### UI Components
+
+Interactive React components commonly asked in frontend interviews:
+
+- **Image Slider/Carousel** ![Medium](https://img.shields.io/badge/Difficulty-Medium-yellow)
+  - A responsive image carousel/slider component that displays a collection of images with navigation controls and optional auto-scroll functionality. Users can navigate through images using previous/next buttons or automatic progression.
+  - 📁 `/ui/src/components/ImageSlider/`
+
+- **Search with Autocomplete** ![Medium](https://img.shields.io/badge/Difficulty-Medium-yellow)
+  - A search input component with real-time autocomplete suggestions that fetches and displays results as the user types. Features debounced API calls to optimize performance and provides a dropdown list of matching suggestions.
+  - 📁 `/ui/src/components/SearchWithAutocomplete/`
+
+- **Star Rating System** ![Medium](https://img.shields.io/badge/Difficulty-Medium-yellow)
+  - No description available
+  - 📁 `/ui/src/components/StarRating/`
+
+- **Accordion Component** ![Unknown](https://img.shields.io/badge/Difficulty-Unknown-lightgrey)
+  - No description available
+  - 📁 `/ui/src/components/Accordion/`
+
+- **Modal** ![Unknown](https://img.shields.io/badge/Difficulty-Unknown-lightgrey)
+  - No description available
+  - 📁 `/ui/src/components/Modal/`
+
+- **Tabs Component - Unified Requirements** ![Unknown](https://img.shields.io/badge/Difficulty-Unknown-lightgrey)
+  - Create a React component named `Tab` that displays a tabbed interface allowing users to switch between different content panels. The component must be reusable, accessible, and follow modern React best practices.
+  - 📁 `/ui/src/components/Tabs/`
+
 
 ## 🚀 Getting Started
 
