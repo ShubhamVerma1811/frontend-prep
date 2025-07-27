@@ -1,5 +1,11 @@
+// import AccordionDemo from "./components/Accordion";
+
 function App() {
-  return <h1 className='text-bold bg-red-500'>HU</h1>;
+  return <h1>import demo compoenents in App.tsx to try.</h1>;
+  // return <AccordionDemo />;
+  // return <TabsDemo />;
+  // return <ModalDemo />;
+  // return <StarDemo />;
 }
 
 export default App;
