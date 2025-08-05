@@ -46,7 +46,7 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)
 
-  JS:
+  machine-coding-topics:
     devDependencies:
       typescript:
         specifier: ~5.8.3
@@ -55,7 +55,7 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)
 
-  ui:
+  machine-coding-ui:
     dependencies:
       react:
         specifier: ^19.1.0
