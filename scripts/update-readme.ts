@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFile, readdir, writeFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 
 interface ComponentInfo {
