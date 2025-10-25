@@ -1,0 +1,3 @@
+window.clearAllTimeout = {};
+
+export default {};

@@ -1,4 +1,3 @@
-
 // TODO:: generic src and dest path
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -12,7 +11,7 @@ if (args.length < 1) {
 
 const filename = args[0];
 const src = path.join(filename);
-const dest = path.join("machine-coding-topics", "concepts");
+const dest = path.join("machine-coding-topics");
 const destFileName = filename
 	.replace(".template", "")
 	.replace("templates/", "");
@@ -21,6 +20,9 @@ if (!fs.existsSync(dest)) {
 	fs.mkdirSync(dest);
 }
 
-fs.writeFileSync(path.join(dest, destFileName), fs.readFileSync(src, "utf8"));
+fs.writeFileSync(
+	path.join(dest, destFileName),
+	fs.readFileSync(src, "utf8").replace(/export default {};/g, "")
+);
 
 console.log(`Created "${destFileName}" in "${dest}" folder from template.`);

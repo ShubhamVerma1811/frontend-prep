@@ -1,0 +1,3 @@
+window.localStorage = {};
+
+export default {};

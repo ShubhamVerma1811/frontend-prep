@@ -67,3 +67,5 @@ asyncCallbacksLIFO.process(wait(10));
 // 4 // then this
 // 6 // then this
 // 8 // then this
+
+export default {};
