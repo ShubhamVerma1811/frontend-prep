@@ -20,24 +20,16 @@ A comprehensive collection of design patterns implemented in TypeScript with pra
 
 ```
 design-patterns/
-├── README.md                    # This file
-├── Creational/
-│   ├── Singleton/
-│   │   ├── README.md           # Pattern-specific documentation
-│   │   ├── basic.ts            # Basic implementation
-│   │   ├── variants.ts         # Thread-safe, testable variants
-│   │   ├── examples.ts         # Real-world usage examples
-│   │   └── tests.ts            # Unit tests
-│   ├── Factory/
-│   └── Builder/
-├── Structural/
-│   ├── Adapter/
-│   ├── Decorator/
-│   └── Facade/
-└── Behavioral/
-    ├── Observer/
-    ├── Strategy/
-    └── Command/
+├───abstract-factory
+├───builder
+├───chain-of-responsibility
+├───command
+├───factory
+├───observer
+├───proxy
+├───singleton
+├───state
+└───strategy
 ```
 
 ## 📝 Pattern Documentation Template
@@ -65,7 +57,7 @@ How does the pattern address the problem?
 ### Variants
 📁 **File:** [`variants.ts`](./variants.ts)
 - Thread-safe version
-- Testable version  
+- Testable version
 - Performance-optimized version
 - Each variant addresses specific limitations
 
