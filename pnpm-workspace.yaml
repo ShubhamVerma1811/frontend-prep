@@ -1,4 +1,5 @@
 packages:
   - "machine-coding-topics"
   - "machine-coding-ui"
+  - "frontend-system-design"
   - "design-patterns"
