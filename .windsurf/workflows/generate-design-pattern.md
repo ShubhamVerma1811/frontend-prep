@@ -1,5 +1,6 @@
 ---
 description: Generating new folder and its template for a given design pattern name.
+auto_execution_mode: 1
 ---
 
 ## LLM Instructions
@@ -9,9 +10,9 @@ description: Generating new folder and its template for a given design pattern n
 - Prefer pnpm for any repo commands.
 
 ### References
-- Template: `machine-coding-topics/design-patterns/agent/PATTERN_README_TEMPLATE.md`
-- Category README: `machine-coding-topics/design-patterns/README.md`
-- Destination root: `machine-coding-topics/design-patterns/`
+- Template: `design-patterns/agent/PATTERN_README_TEMPLATE.md`
+- Category README: `design-patterns/README.md`
+- Destination root: `design-patterns/`
 
 ## Workflow Steps
 
