@@ -12,7 +12,6 @@
 		"enabled": true,
 		"indentStyle": "tab"
 	},
-
 	"linter": {
 		"enabled": true,
 		"rules": {

@@ -22,7 +22,10 @@ if (!fs.existsSync(dest)) {
 
 fs.writeFileSync(
 	path.join(dest, destFileName),
-	fs.readFileSync(src, "utf8").replace(/export default {};/g, "")
+	fs
+		.readFileSync(src, "utf8")
+		.replace(/export default {};/g, "")
+		.trim()
 );
 
 console.log(`Created "${destFileName}" in "${dest}" folder from template.`);
