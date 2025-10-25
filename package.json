@@ -8,7 +8,8 @@
 		"check": "biome check .",
 		"check:fix": "biome check --apply .",
 		"update-readme": "bun run scripts/update-readme.ts",
-		"make": "bun run scripts/copy-template.ts"
+		"make": "bun run scripts/copy-template.ts",
+		"generate:topics": "bun run scripts/generate-topics.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.1.2",
