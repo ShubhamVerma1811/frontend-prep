@@ -1,4 +1,10 @@
 {
 	"extends": ["../tsconfig.base.json"],
-	"include": ["**/*", "../utils/**/*"]
+	"include": ["**/*", "../utils/**/*"],
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true
+	}
 }
