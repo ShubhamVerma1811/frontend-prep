@@ -5,7 +5,7 @@
 
   •Send each event after a delay of 1 second and this logging fails every n % 5 times.
   •Send the next event only after the previous one resolves.
-  •When the failure occurs attempt a retry.Breaking the problem statement into subproblems we can create this SDK in three steps
+  •When the failure occurs attempt a retry.
  */
 
 class SDK {
