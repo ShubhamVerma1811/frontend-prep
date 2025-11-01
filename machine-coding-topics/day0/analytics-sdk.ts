@@ -11,53 +11,54 @@
 const RETRY_LIMIT = 3;
 
 class SDK {
-  private queue: Array<{
-    event: string;
-    count: number;
-  }>;
+	private queue: Array<{
+		event: string;
+		count: number;
+	}>;
 
-  constructor() {
-    this.queue = [];
-  }
+	constructor() {
+		this.queue = [];
+	}
 
-  logEvent(event: string) {
-    this.queue.push({
-      event,
-      count: RETRY_LIMIT,
-    });
-  }
+	logEvent(event: string) {
+		this.queue.push({
+			event,
+			count: RETRY_LIMIT,
+		});
+	}
 
-  send() {
-    this.processQueue();
-  }
+	send() {
+		this.processQueue();
+	}
 
-  private processQueue() {
-    if (!this.queue.length) return;
-    const event = this.queue.shift();
+	private processQueue() {
+		if (!this.queue.length) return;
+		const event = this.queue.shift();
+		if (!event) return;
 
-    this.wait(1000)
-      .then(() => {
-        console.log(`Analytics sent ${event.event}`);
-      })
-      .catch(() => {
-        if (event.count < 0) {
-          console.log(`Exhaused retry limit for `, event);
-          return;
-        }
-        console.log(`Failed to send%s\nRetrying at the end`, event.event);
-        event.count--;
-        this.queue.push(event);
-      })
-      .finally(() => {
-        this.processQueue();
-      });
-  }
+		this.wait(1000)
+			.then(() => {
+				console.log(`Analytics sent ${event.event}`);
+			})
+			.catch(() => {
+				if (event.count < 0) {
+					console.log("Exhaused retry limit for ", event);
+					return;
+				}
+				console.log("Failed to send%s\nRetrying at the end", event.event);
+				event.count--;
+				this.queue.push(event);
+			})
+			.finally(() => {
+				this.processQueue();
+			});
+	}
 
-  private wait(i) {
-    return new Promise((res, rej) =>
-      setTimeout(() => (Math.random() < 0.43 ? rej() : res('OK')), i)
-    );
-  }
+	private wait(i: number) {
+		return new Promise((res, rej) =>
+			setTimeout(() => (Math.random() < 0.43 ? rej() : res("OK")), i)
+		);
+	}
 }
 
 // INPUT
