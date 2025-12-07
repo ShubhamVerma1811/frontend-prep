@@ -36,7 +36,76 @@
  * driver.pick("Kumar").drive(4).drop("Kumar");
  */
 
-class Uber {}
+class Uber {
+	private queue: Array<() => Promise<unknown>>;
+	private isExecuting: boolean = false;
+
+	constructor() {
+		this.queue = [];
+		this.isExecuting = false;
+	}
+
+	private async processQueue() {
+		if (this.isExecuting) return;
+		this.isExecuting = true;
+		for (const cb of this.queue) {
+			await cb();
+		}
+	}
+
+	pick(person: string) {
+		this.queue.push(function pick() {
+			return new Promise((res) => {
+				console.log(`User ${person} is picked`);
+				res("OK");
+			});
+		});
+		this.processQueue();
+		return this;
+	}
+
+	drive(distance: number) {
+		this.queue.push(function drive() {
+			return new Promise((res) => {
+				console.log(`Started driving for`, distance * 1000);
+				setTimeout(() => {
+					res("OK");
+				}, distance * 1000);
+			});
+		});
+		this.processQueue();
+
+		return this;
+	}
+
+	drop(person: string) {
+		this.queue.push(function drop() {
+			return new Promise((res) => {
+				console.log(`Drop ${person}`);
+				res("OK");
+			});
+		});
+
+		this.processQueue();
+
+		return this;
+	}
+
+	rest(time: number) {
+		this.queue.push(function rest() {
+			return new Promise((res) => {
+				console.log(`Driver is offline for`, time * 1000);
+				setTimeout(() => {
+					res("OK");
+				}, time * 1000);
+			});
+		});
+
+		this.processQueue();
+
+		return this;
+	}
+}
 
 const x = new Uber()
 	.pick("TestUser")
@@ -61,5 +130,3 @@ x.pick("BABBY").drive(4).drop("BABBY").rest(10);
 // Driver is driving     <-- wait 4 seconds
 // Drop TestUser
 // Driver is in offline mode <-- wait 10 seconds
-
-export default {};
