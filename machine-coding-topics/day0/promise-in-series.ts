@@ -11,8 +11,12 @@ function asyncTask(wait: number): () => Promise<number> {
 
 const promises = [asyncTask(4), asyncTask(1), asyncTask(3), asyncTask(10)];
 
-async function asyncSeriesExecuter(promises) {}
+async function asyncSeriesExecuter(promises: Array<() => Promise<number>>) {
+	promises.reduce((acc: Promise<unknown>, curr: () => Promise<number>) => {
+		return acc.then(() => {
+			return curr();
+		});
+	}, Promise.resolve());
+}
 
 asyncSeriesExecuter(promises);
-
-export default {};
