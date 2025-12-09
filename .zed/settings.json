@@ -1,0 +1,5 @@
+{
+	"edit_predictions": {
+		"disabled_globs": ["*.ts", "*.js", "*.md"]
+	}
+}
