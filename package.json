@@ -10,12 +10,13 @@
 		"check:fix": "biome check --apply .",
 		"update-readme": "bun run scripts/update-readme.ts",
 		"make": "bun run scripts/copy-template.ts",
-		"generate:topics": "bun run scripts/generate-topics.ts"
+		"generate:topics": "bun run scripts/generate-day.ts --type=topics",
+		"generate:design-patterns": "bun run scripts/generate-day.ts --type=design-patterns"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.1.2",
-		"react": "^19.1.0",
-		"react-dom": "^19.1.0",
+		"@types/node": "^24.0.10",
+		"prettier": "^3.6.2",
 		"vitest": "^3.2.4"
 	},
 	"dependencies": {
