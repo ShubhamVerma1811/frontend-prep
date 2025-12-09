@@ -1,140 +1,128 @@
-# Frontend Interview Preparation
+# Frontend Interview Prep
 
-A comprehensive repository for frontend development interview preparation, covering JavaScript fundamentals, React concepts, and practical coding exercises.
+One monorepo to practice all frontend interview topics for interview preparation — JavaScript/TypeScript coding, React UI (machine-coding), design patterns, and frontend system design — in one place.
 
-> Note: All the data is taken from publicly available domain at that time.
+Note: Content is compiled from publicly available sources at the time it was added.
 
-## 📁 Repository Structure
+## Top-level structure
 
-### `/JS` - JavaScript & TypeScript Practice
+Workspace packages (managed via pnpm):
 
-Core JavaScript and TypeScript interview questions and solutions:
+- machine-coding-topics — JS/TS interview practice (fundamentals, DSA, async, patterns)
+- machine-coding-ui — React + TypeScript + Vite app for UI/machine-coding components
+- frontend-system-design — Frontend system design case studies (plus a small React app scaffold)
+- design-patterns — TypeScript implementations and notes for classic design patterns
 
-- **Async Programming** - Promise handling, async/await patterns
-- **Data Structures** - Common implementations (arrays, objects, etc.)
-- **Algorithms** - Problem-solving exercises
-- **Design Patterns** - JavaScript design pattern examples
-- **Core Concepts** - Fundamental JS/TS demonstrations
+Other folders:
 
-### `/ui` - React + TypeScript Application
+- scripts — repo automation (generators, README updates)
+- templates — blueprints used by generators
+- utils — shared utilities/helpers
+- .windsurf, .zed — editor/IDE configuration
+- node_modules — workspace dependencies
 
-Modern React application built with:
+## Prerequisites
 
-- **React 19** with TypeScript
-- **Vite** for fast development and building
-- **Tailwind CSS** for styling
-- **Biome** for linting and formatting
-- **Vitest** for testing
+- Node.js ≥ 22 (required by ui and system-design packages)
+- pnpm (workspace/package manager)
+- Bun (optional) — needed for some root automation scripts
 
-#### UI Components
+## Getting started
 
-Interactive React components commonly asked in frontend interviews:
+Clone and install dependencies:
 
-- **Image Slider/Carousel** ![Medium](https://img.shields.io/badge/Difficulty-Medium-yellow)
-  - A responsive image carousel/slider component that displays a collection of images with navigation controls and optional auto-scroll functionality. Users can navigate through images using previous/next buttons or automatic progression.
-  - 📁 `/ui/src/components/ImageSlider/`
-
-- **Search with Autocomplete** ![Medium](https://img.shields.io/badge/Difficulty-Medium-yellow)
-  - A search input component with real-time autocomplete suggestions that fetches and displays results as the user types. Features debounced API calls to optimize performance and provides a dropdown list of matching suggestions.
-  - 📁 `/ui/src/components/SearchWithAutocomplete/`
-
-- **Star Rating System** ![Medium](https://img.shields.io/badge/Difficulty-Medium-yellow)
-  - No description available
-  - 📁 `/ui/src/components/StarRating/`
-
-- **Accordion Component** ![Unknown](https://img.shields.io/badge/Difficulty-Unknown-lightgrey)
-  - No description available
-  - 📁 `/ui/src/components/Accordion/`
-
-- **Modal** ![Unknown](https://img.shields.io/badge/Difficulty-Unknown-lightgrey)
-  - No description available
-  - 📁 `/ui/src/components/Modal/`
-
-- **Tabs Component - Unified Requirements** ![Unknown](https://img.shields.io/badge/Difficulty-Unknown-lightgrey)
-  - Create a React component named `Tab` that displays a tabbed interface allowing users to switch between different content panels. The component must be reusable, accessible, and follow modern React best practices.
-  - 📁 `/ui/src/components/Tabs/`
-
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (latest LTS version)
-- pnpm (recommended package manager)
-
-### Installation
-
-```bash
-# Clone the repository
+```
 git clone <repository-url>
 cd frontend-prep
-
-# Install dependencies
 pnpm install
 ```
 
-### Running the Projects
+## Root scripts
 
-#### JavaScript Practice
+Run from the repo root:
 
-```bash
-cd JS
+```
+pnpm test           # Run vitest (if tests are present)
+pnpm lint           # Biome lint
+pnpm lint:fix       # Biome lint with fixes
+pnpm format         # Biome format (write)
+pnpm format:check   # Biome format (check only)
+pnpm check          # Biome check
+pnpm check:fix      # Biome check with fixes
+
+# Generator/automation (requires Bun)
+pnpm update-readme
+pnpm make
+pnpm generate:topics
+pnpm generate:design-patterns
+```
+
+## Commands per folder
+
+You can either cd into each package or run via pnpm’s workspace filtering (-F).
+
+- machine-coding-topics (JS/TS practice)
+
+```
+# Option A: from root
+pnpm -F machine-coding-topics test
+
+# Option B: from the package
+cd machine-coding-topics
 pnpm test
 ```
 
-#### React UI Application
+- machine-coding-ui (React + TS + Vite)
 
-```bash
-cd ui
-pnpm dev        # Start development server
-pnpm build      # Build for production
-pnpm test       # Run tests
+```
+# Option A: from root
+pnpm -F machine-coding-ui dev
+pnpm -F machine-coding-ui build
+pnpm -F machine-coding-ui preview
+pnpm -F machine-coding-ui lint
+
+# Option B: from the package
+cd machine-coding-ui
+pnpm dev
+pnpm build
+pnpm preview
+pnpm lint
 ```
 
-## 🛠️ Tech Stack
+- frontend-system-design (case studies + app scaffold)
 
-### Core Technologies
+```
+# Option A: from root
+pnpm -F frontend-system-design dev
+pnpm -F frontend-system-design build
+pnpm -F frontend-system-design preview
+pnpm -F frontend-system-design lint
 
-- **JavaScript/TypeScript** - Primary languages
-- **React 19** - Frontend framework
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
+# Option B: from the package
+cd frontend-system-design
+pnpm dev
+pnpm build
+pnpm preview
+pnpm lint
+```
 
-### Development Tools
+- design-patterns (TypeScript examples)
 
-- **ESLint** - Code linting
-- **Vitest** - Testing framework
-- **pnpm** - Package management
-- **TypeScript** - Type safety
+```
+# No npm scripts defined.
+# Explore pattern implementations in subfolders.
+# If you want to compile TS locally, you can set up a tsconfig or run tsc manually.
+```
 
-### Key Dependencies
+## Repo purpose
 
-- React & React DOM
-- Vite plugins for React
-- ESLint plugins for React
-- Tailwind CSS with Vite integration
-- TypeScript configuration
+- Practice JavaScript/TypeScript fundamentals, data structures, algorithms, async, and patterns (machine-coding-topics).
+- Build and refine interview-style React components (machine-coding-ui).
+- Study and implement classic design patterns in TypeScript (design-patterns).
+- Prepare for frontend system design interviews with structured case studies and templates (frontend-system-design).
 
-## 📚 Learning Resources
+## Contributing
 
-This repository is structured to help with:
-
-- **Algorithm Practice** - Common coding interview problems
-- **JavaScript Fundamentals** - Core language concepts
-- **React Development** - Modern React patterns and practices
-- **TypeScript** - Type-safe JavaScript development
-- **Testing** - Unit testing with Vitest
-- **Code Quality** - ESLint configuration and best practices
-
-## 🤝 Contributing
-
-Feel free to contribute by:
-
-- Adding new practice problems
-- Improving existing solutions
-- Enhancing documentation
-- Fixing bugs or issues
-
-## 📄 License
-
-This project is for educational purposes and interview preparation.
+- Add new problems, components, or case studies.
+- Improve solutions, docs, and structure.
+- Enhance generators/templates under scripts and templates.
