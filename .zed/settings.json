@@ -1,5 +1,16 @@
 {
 	"edit_predictions": {
-		"disabled_globs": ["*.ts", "*.js", "*.md"]
+		"disabled_globs": [
+			"*.ts",
+			"*.js",
+			"*.md",
+			"*.tsx",
+			"*.jsx",
+			"*.log",
+			"*.css",
+			"*.html",
+			"*.graphql",
+			"*.json"
+		]
 	}
 }
