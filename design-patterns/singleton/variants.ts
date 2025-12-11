@@ -9,15 +9,19 @@ export class EagerSingleton {
 }
 
 export class TestableSingleton {
-	private static instance: TestableSingleton | null = new TestableSingleton();
+	private static instance: TestableSingleton | null = null;
 
 	private constructor() {}
 
 	public static getInstance() {
+		if (!TestableSingleton.instance) {
+			TestableSingleton.instance = new TestableSingleton();
+		}
+
 		return TestableSingleton.instance;
 	}
 
-	public static resetInstance() {
+	static resetInstance(): void {
 		TestableSingleton.instance = null;
 	}
 }

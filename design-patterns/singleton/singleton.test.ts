@@ -1,9 +1,8 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { TestableSingleton } from "./variants";
 
 describe("TestableSingleton", () => {
 	afterEach(() => {
-		// Reset singleton instance after each test
 		TestableSingleton.resetInstance();
 	});
 
@@ -22,22 +21,3 @@ describe("TestableSingleton", () => {
 		expect(instance1).not.toBe(instance2);
 	});
 });
-
-// Integration Testing with Dependency Injection
-interface ILogger {
-	log(message: string): void;
-}
-
-class Service {
-	constructor(private logger: ILogger) {}
-
-	doSomething(): void {
-		this.logger.log("Service operation completed");
-	}
-}
-
-// Test with mock
-const mockLogger = { log: vi.fn() };
-const service = new Service(mockLogger);
-service.doSomething();
-expect(mockLogger.log).toHaveBeenCalledWith("Service operation completed");
