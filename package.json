@@ -11,10 +11,13 @@
 		"update-readme": "bun run scripts/update-readme.ts",
 		"make": "bun run scripts/copy-template.ts",
 		"generate:topics": "bun run scripts/generate-day.ts --type=topics",
-		"generate:design-patterns": "bun run scripts/generate-day.ts --type=design-patterns"
+		"generate:design-patterns": "bun run scripts/generate-day.ts --type=design-patterns",
+		"ui:dev": "pnpm -F react-repl dev",
+		"ui:build": "pnpm -F react-repl build",
+		"dp:test": "pnpm -F design-patterns test"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.1.2",
+		"@biomejs/biome": "^2.3.8",
 		"@types/node": "^24.0.10",
 		"prettier": "^3.6.2",
 		"vitest": "^3.2.4"

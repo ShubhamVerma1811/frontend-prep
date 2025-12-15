@@ -3,3 +3,5 @@ packages:
   - "machine-coding-ui"
   - "frontend-system-design"
   - "design-patterns"
+  - "react-repl"
+  - "next-repl"
