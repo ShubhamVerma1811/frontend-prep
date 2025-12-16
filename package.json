@@ -14,21 +14,21 @@
 		"generate:design-patterns": "bun run scripts/generate-day.ts --type=design-patterns",
 		"ui:dev": "pnpm -F react-repl dev",
 		"ui:build": "pnpm -F react-repl build",
-		"dp:test": "pnpm -F design-patterns test"
+		"dp:test": "pnpm -F design-patterns test",
+		"topics:test": "pnpm -F machine-coding-topics test"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.8",
 		"@types/node": "^24.0.10",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
+		"typescript": "~5.8.3",
 		"vitest": "^3.2.4"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.18",
-		"@types/node": "^24.10.4",
-		"@types/react": "^19.2.7",
-		"@types/react-dom": "^19.2.3",
 		"@vitejs/plugin-react": "^4.7.0",
 		"tailwindcss": "^4.1.18",
-		"typescript": "~5.8.3",
-		"vite": "^7.2.7"
+		"vite": "^7.3.0"
 	}
 }
