@@ -1,27 +1,32 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+/*
+# useIdle — Problem Description
 
-export function useIdle(wait: number) {
-	const [idle, setIsIdle] = useState(false);
-	const timerRef = useRef<NodeJS.Timeout>(void 0);
+Build a custom React hook named `useIdle` that detects when a user has been **inactive (idle)** for a specified amount of time.
 
-	const listener = useCallback(
-		function listener() {
-			clearTimeout(timerRef.current);
-			setIsIdle(false);
-			timerRef.current = setTimeout(() => {
-				setIsIdle(true);
-			}, wait);
-		},
-		[wait]
-	);
+This is useful for improving UX and security in web apps by reacting to inactivity—for example, by logging the user out automatically, showing “Are you still there?” prompts, or pausing background work when the user isn’t interacting.
 
-	useEffect(() => {
-		window.addEventListener("mousemove", listener);
+## What the hook should do
 
-		return () => {
-			window.removeEventListener("mousemove", listener);
-		};
-	});
+- Accept one input:
+  - `ms` (number): the duration (in milliseconds) of no user activity after which the user is considered idle
+- Return:
+  - `idle` (boolean): whether the user is currently idle
 
-	return idle;
-}
+## Expected behavior
+
+- Start an idle timer when the hook is initialized.
+- If no user activity occurs for at least `ms` milliseconds, set `idle` to `true`.
+- When user activity occurs (e.g., mouse movement, mouse click, key press, scroll, touch), set `idle` back to `false` and reset the idle timer.
+- Clean up all timers and event listeners on unmount to avoid memory leaks.
+
+## Typical use cases
+
+- Auto-logout after inactivity
+- Showing inactivity warnings / session timeout modals
+- Pausing polling, animations, or expensive work when the user is idle
+- Dimming or changing UI state based on engagement
+
+*/
+
+export function useIdle() {}
+// TODO::implementation
