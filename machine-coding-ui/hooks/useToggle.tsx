@@ -41,7 +41,7 @@ export function useToggle(initialValue = false) {
 			setOn(value);
 			return;
 		}
-		// TODO::implementation		setOn((p) => !p);
+		setOn((p) => !p);
 	}, []);
 
 	return { on, toggle };

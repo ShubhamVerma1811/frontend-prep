@@ -28,5 +28,41 @@ This is useful for improving UX and security in web apps by reacting to inactivi
 
 */
 
-export function useIdle() {}
-// TODO::implementation
+import { useCallback, useEffect, useRef, useState } from "react";
+
+export function useIdle(ms: number) {
+	const [idle, setIdle] = useState(true);
+	const timer = useRef<null | NodeJS.Timeout>(null);
+	const controller = useRef(new AbortController());
+	const events = ["mousemove", "mouseover", "click", "keydown"];
+
+	const handler = useCallback(
+		function handler() {
+			setIdle(false);
+			timer.current && clearTimeout(timer.current);
+
+			timer.current = setTimeout(() => setIdle(true), ms);
+		},
+		[ms]
+	);
+
+	useEffect(() => {
+		controller.current.abort();
+		controller.current = new AbortController();
+		handler();
+
+		events.forEach((event) => {
+			window.addEventListener(event, handler, {
+				signal: controller.current.signal,
+				passive: true,
+			});
+		});
+
+		return () => {
+			controller.current.abort();
+			timer.current && clearTimeout(timer.current);
+		};
+	}, [handler]);
+
+	return idle;
+}
