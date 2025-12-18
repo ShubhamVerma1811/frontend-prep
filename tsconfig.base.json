@@ -13,7 +13,7 @@
 		"composite": true,
 		"incremental": true,
 		"paths": {
-			"@/utils": ["./utils"],
+			"@/utils/*": ["./utils/*"],
 			"@/ui/*": ["./machine-coding-ui/*"],
 			"@/sd/*": ["./frontend-system-design/*"]
 		}
