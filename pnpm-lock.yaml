@@ -4,6 +4,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  react: 19.1.0
+  react-dom: 19.1.0
+
 importers:
 
   .:
@@ -42,19 +46,48 @@ importers:
 
   design-patterns: {}
 
-  frontend-system-design: {}
+  frontend-system-design:
+    dependencies:
+      '@frontend-prep/utils':
+        specifier: workspace:*
+        version: link:../utils
+      react:
+        specifier: 19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: 19.1.0
+        version: 19.1.0(react@19.1.0)
 
   machine-coding-topics: {}
 
-  machine-coding-ui: {}
+  machine-coding-ui:
+    dependencies:
+      '@frontend-prep/utils':
+        specifier: workspace:*
+        version: link:../utils
+      react:
+        specifier: 19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: 19.1.0
+        version: 19.1.0(react@19.1.0)
 
   react-repl:
     dependencies:
+      '@frontend-prep/sd':
+        specifier: workspace:*
+        version: link:../frontend-system-design
+      '@frontend-prep/ui':
+        specifier: workspace:*
+        version: link:../machine-coding-ui
+      '@frontend-prep/utils':
+        specifier: workspace:*
+        version: link:../utils
       react:
-        specifier: ^19.1.0
+        specifier: 19.1.0
         version: 19.1.0
       react-dom:
-        specifier: ^19.1.0
+        specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
       '@tailwindcss/vite':
@@ -78,6 +111,8 @@ importers:
       vite:
         specifier: ^7.3.0
         version: 7.3.0(@types/node@24.10.4)(jiti@2.6.1)(lightningcss@1.30.2)
+
+  utils: {}
 
 packages:
 
@@ -905,7 +940,7 @@ packages:
   react-dom@19.1.0:
     resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
     peerDependencies:
-      react: ^19.1.0
+      react: 19.1.0
 
   react-refresh@0.17.0:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}

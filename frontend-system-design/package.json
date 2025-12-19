@@ -1,8 +1,24 @@
 {
-	"name": "frontend-system-design",
+	"name": "@frontend-prep/sd",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
+	"sideEffects": [
+		"**/*.css"
+	],
+	"exports": {
+		"./bookmyshow": {
+			"types": "./bookmyshow_district/index.ts",
+			"default": "./bookmyshow_district/index.ts"
+		}
+	},
+	"dependencies": {
+		"@frontend-prep/utils": "workspace:*"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
 	"engines": {
 		"node": ">=22"
 	}

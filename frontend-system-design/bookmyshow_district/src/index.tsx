@@ -1,5 +1,5 @@
-import { generateUUID } from "@/utils/index";
-import { useRef, useState } from "react";
+import { generateUUID } from "@frontend-prep/utils";
+import React, { useRef, useState } from "react";
 import {
 	seatMapBuilder,
 	SeatStatus,

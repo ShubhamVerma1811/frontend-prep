@@ -12,9 +12,15 @@
 		"make": "bun run scripts/copy-template.ts",
 		"generate:topics": "bun run scripts/generate-day.ts --type=topics",
 		"generate:design-patterns": "bun run scripts/generate-day.ts --type=design-patterns",
-		"ui":"pnpm -F react-repl",
+		"ui": "pnpm -F react-repl",
 		"dp": "pnpm -F design-patterns",
 		"topics": "pnpm -F machine-coding-topics"
+	},
+	"pnpm": {
+		"overrides": {
+			"react": "19.1.0",
+			"react-dom": "19.1.0"
+		}
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.8",

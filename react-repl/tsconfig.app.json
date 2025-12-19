@@ -23,11 +23,6 @@
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedSideEffectImports": true
 	},
-	"include": [
-		"src",
-		"../utils/",
-		"../machine-coding-ui",
-		"../frontend-system-design"
-	],
+	"include": ["src"],
 	"extends": ["../tsconfig.base.json"]
 }

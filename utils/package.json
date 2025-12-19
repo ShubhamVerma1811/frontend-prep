@@ -1,0 +1,20 @@
+{
+	"name": "@frontend-prep/utils",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./index.ts",
+			"default": "./index.ts"
+		},
+		"./*": {
+			"types": "./*.ts",
+			"default": "./*.ts"
+		}
+	},
+	"engines": {
+		"node": ">=22"
+	}
+}

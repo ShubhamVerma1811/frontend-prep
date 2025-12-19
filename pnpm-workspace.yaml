@@ -4,3 +4,4 @@ packages:
   - "frontend-system-design"
   - "design-patterns"
   - "react-repl"
+  - "utils"

@@ -1,8 +1,28 @@
 {
-	"name": "machine-coding-ui",
-	"private": true,
+	"name": "@frontend-prep/ui",
 	"version": "0.0.0",
+	"private": true,
 	"type": "module",
+	"sideEffects": [
+		"**/*.css"
+	],
+	"exports": {
+		"./hooks/*": {
+			"types": "./hooks/*.tsx",
+			"default": "./hooks/*.tsx"
+		},
+		"./components/*": {
+			"types": "./components/*.tsx",
+			"default": "./components/*.tsx"
+		}
+	},
+	"dependencies": {
+		"@frontend-prep/utils": "workspace:*"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
 	"engines": {
 		"node": ">=22"
 	}

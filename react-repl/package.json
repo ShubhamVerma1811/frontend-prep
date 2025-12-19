@@ -13,6 +13,9 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@frontend-prep/sd": "workspace:*",
+		"@frontend-prep/ui": "workspace:*",
+		"@frontend-prep/utils": "workspace:*",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0"
 	},
