@@ -11,6 +11,10 @@
 			"types": "./hooks/*.tsx",
 			"default": "./hooks/*.tsx"
 		},
+		"./components": {
+			"types": "./components/index.tsx",
+			"default": "./components/index.tsx"
+		},
 		"./components/*": {
 			"types": "./components/*.tsx",
 			"default": "./components/*.tsx"
