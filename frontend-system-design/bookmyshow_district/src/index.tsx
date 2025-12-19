@@ -9,93 +9,11 @@ import {
 } from "./services/seating";
 import "./style.css";
 
-function clamp(n: number, min: number, max: number) {
-	return Math.max(min, Math.min(max, n));
-}
-
-function ZoomableLayout({
-	title,
-	children,
-}: {
-	title: string;
-	children: React.ReactNode;
-}) {
-	const containerRef = useRef<HTMLDivElement | null>(null);
-
-	const [scale, setScale] = useState(1);
-
-	const MIN_SCALE = 0.1;
-	const MAX_SCALE = 2.5;
-	const STEP = 0.05;
-	const zoomOut = () => setScale((s) => clamp(s - STEP, MIN_SCALE, MAX_SCALE));
-
-	const zoomIn = () => setScale((s) => clamp(s + STEP, MIN_SCALE, MAX_SCALE));
-	const resetZoom = () => setScale(1);
-
-	return (
-		<div className="w-full">
-			<div className="border border-gray-200 rounded-lg p-2">
-				<div className="flex items-center justify-between gap-2 mb-2">
-					<p className="text-center font-bold text-xl">{title}</p>
-
-					<div className="flex items-center justify-end gap-2">
-						<button
-							type="button"
-							onClick={zoomOut}
-							className="px-3 py-1 border border-gray-300 rounded-md text-sm font-semibold"
-							aria-label="Zoom out"
-						>
-							-
-						</button>
-						<button
-							type="button"
-							onClick={resetZoom}
-							className="px-3 py-1 border border-gray-300 rounded-md text-sm font-semibold"
-							aria-label="Reset zoom"
-						>
-							Reset
-						</button>
-						<button
-							type="button"
-							onClick={zoomIn}
-							className="px-3 py-1 border border-gray-300 rounded-md text-sm font-semibold"
-							aria-label="Zoom in"
-						>
-							+
-						</button>
-						<span className="text-xs text-gray-500 w-12 text-right">
-							{Math.round(scale * 100)}%
-						</span>
-					</div>
-				</div>
-
-				<div
-					ref={containerRef}
-					className="overflow-x-auto overflow-y-auto max-h-[80vh]"
-					style={{
-						overscrollBehavior: "contain",
-					}}
-				>
-					<div
-						className="w-max mx-auto"
-						style={{
-							transform: `scale(${scale})`,
-							transformOrigin: "top center",
-						}}
-					>
-						{children}
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-}
-
-export const BookMyShow = () => {
+export const BookMyShow = React.memo(function BookMyShow() {
 	const layouts = seatMapBuilder();
 
 	return (
-		<div className="my-4 font-['Be_Vietnam_Pro'] w-full">
+		<div className="my-4 font-['Be_Vietnam_Pro','Calibri'] w-full">
 			<div>
 				<p className="font-bold text-lg text-center">
 					Dynamic Rendering of Seat Layout like{" "}
@@ -122,7 +40,7 @@ export const BookMyShow = () => {
 			</div>
 		</div>
 	);
-};
+});
 
 function SeatLayout({ areas, index }: { areas: Area[]; index: number }) {
 	return (
@@ -235,4 +153,86 @@ function SeatComp({ seat }: { seat: Seat }) {
 				</SeatWrapper>
 			);
 	}
+}
+
+function clamp(n: number, min: number, max: number) {
+	return Math.max(min, Math.min(max, n));
+}
+
+function ZoomableLayout({
+	title,
+	children,
+}: {
+	title: string;
+	children: React.ReactNode;
+}) {
+	const containerRef = useRef<HTMLDivElement | null>(null);
+
+	const [scale, setScale] = useState(1);
+
+	const MIN_SCALE = 0.1;
+	const MAX_SCALE = 2.5;
+	const STEP = 0.05;
+	const zoomOut = () => setScale((s) => clamp(s - STEP, MIN_SCALE, MAX_SCALE));
+
+	const zoomIn = () => setScale((s) => clamp(s + STEP, MIN_SCALE, MAX_SCALE));
+	const resetZoom = () => setScale(1);
+
+	return (
+		<div className="w-full">
+			<div className="border border-gray-200 rounded-lg p-2">
+				<div className="flex items-center justify-between gap-2 mb-2">
+					<p className="text-center font-bold text-xl">{title}</p>
+
+					<div className="flex items-center justify-end gap-2">
+						<button
+							type="button"
+							onClick={zoomOut}
+							className="px-3 py-1 border border-gray-300 rounded-md text-sm font-semibold"
+							aria-label="Zoom out"
+						>
+							-
+						</button>
+						<button
+							type="button"
+							onClick={resetZoom}
+							className="px-3 py-1 border border-gray-300 rounded-md text-sm font-semibold"
+							aria-label="Reset zoom"
+						>
+							Reset
+						</button>
+						<button
+							type="button"
+							onClick={zoomIn}
+							className="px-3 py-1 border border-gray-300 rounded-md text-sm font-semibold"
+							aria-label="Zoom in"
+						>
+							+
+						</button>
+						<span className="text-xs text-gray-500 w-12 text-right">
+							{Math.round(scale * 100)}%
+						</span>
+					</div>
+				</div>
+
+				<div
+					ref={containerRef}
+					className="overflow-x-auto overflow-y-auto max-h-[80vh]"
+					style={{
+						overscrollBehavior: "contain",
+					}}
+				>
+					<div
+						className="w-max mx-auto"
+						style={{
+							transform: `scale(${scale})`,
+							transformOrigin: "top center",
+						}}
+					>
+						{children}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
