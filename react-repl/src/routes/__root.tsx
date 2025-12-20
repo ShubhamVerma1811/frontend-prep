@@ -8,11 +8,11 @@ export const Route = createRootRoute({
 function RootComponent() {
 	return (
 		<React.Fragment>
-			<header>
+			{/*<header>
 				<nav>
 					<Link to="/">Home</Link>
 				</nav>
-			</header>
+			</header>*/}
 			<Outlet />
 		</React.Fragment>
 	);
