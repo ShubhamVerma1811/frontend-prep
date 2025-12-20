@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography";
+@source "../../";
+
 body {
 	font-family: Calibri, sans-serif;
 }
-
-@source "../../";
