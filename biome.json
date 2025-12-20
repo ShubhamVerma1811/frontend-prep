@@ -18,7 +18,8 @@
 			"recommended": true,
 			"complexity": {
 				"noExcessiveCognitiveComplexity": "warn",
-				"noVoid": "off"
+				"noVoid": "off",
+				"noUselessFragments": "off"
 			},
 			"correctness": {
 				"useExhaustiveDependencies": "warn"

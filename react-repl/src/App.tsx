@@ -1,17 +1,9 @@
-import { BookMyShow } from "@frontend-prep/sd/bookmyshow";
-import React from "react";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
+import "./index.css";
+import { routeTree } from "./routeTree.gen";
 
-function App() {
-	return (
-		<React.Fragment>
-			<BookMyShow />
-			{/*<AsyncTest />*/}
-			{/*<IdleTest />*/}
-			{/*<TimerTest />*/}
-			{/*<TimerBugDemo />*/}
-			{/*<Retry />*/}
-		</React.Fragment>
-	);
+const router = createRouter({ routeTree });
+
+export default function App() {
+	return <RouterProvider router={router} />;
 }
-
-export default App;

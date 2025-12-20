@@ -16,6 +16,7 @@
 		"@frontend-prep/sd": "workspace:*",
 		"@frontend-prep/ui": "workspace:*",
 		"@frontend-prep/utils": "workspace:*",
+		"@tanstack/react-router-devtools": "^1.141.6",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0"
 	},
