@@ -1,4 +1,4 @@
-function sampler<T extends Array<unknown>>(
+export function sampler<T extends Array<unknown>>(
 	cb: (...args: T) => void,
 	count: number
 ) {
@@ -10,14 +10,4 @@ function sampler<T extends Array<unknown>>(
 			return cb(...args);
 		}
 	};
-}
-
-function message(i: number) {
-	console.log("hello", i);
-}
-
-const sample = sampler(message, 3);
-
-for (const i of Array.from({ length: 10 }, (_, idx) => idx)) {
-	sample(i + 1);
 }

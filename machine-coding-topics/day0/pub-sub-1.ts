@@ -35,37 +35,27 @@
  *    - Pick one behaviour and keep it consistent.
  */
 
-export class Move {}
+type Callback = (data: string) => void;
 
-// * Example Usage:
-const move = new Move();
+export class Move {
+	private listeners: Array<Callback>;
 
-// 1st observer
-const firedHandler = (item: string) => {
-	console.log(`fired: ${item}`);
-};
+	constructor() {
+		this.listeners = [];
+	}
 
-// 2nd observer
-const movedHandler = (item: string) => {
-	console.log(`Moved: ${item}`);
-};
+	subscribe(cb: Callback) {
+		if (this.listeners.includes(cb)) return;
+		this.listeners.push(cb);
+	}
 
-// subscribe 1st observer
-move.subscribe(firedHandler);
-move.fire("event #1");
+	unsubscribe(cb: Callback) {
+		this.listeners = this.listeners.filter((_cb) => cb !== _cb);
+	}
 
-// unsubscribe 1st observer
-move.unsubscribe(firedHandler);
-move.fire("event #2");
-
-// subscribe 1st & 2nd observer
-move.subscribe(firedHandler);
-move.subscribe(movedHandler);
-move.fire("event #3");
-
-// Expected Output:
-// "fired: event #1"
-// "fired: event #3"
-// "Moved: event #3"
-
-export default {};
+	fire(data: string) {
+		this.listeners.forEach((cb) => {
+			cb(data);
+		});
+	}
+}
