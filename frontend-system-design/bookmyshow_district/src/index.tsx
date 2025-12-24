@@ -1,11 +1,11 @@
 import { generateUUID } from "@frontend-prep/utils";
 import React, { useRef, useState } from "react";
 import {
-	seatMapBuilder,
-	SeatStatus,
 	type Area,
 	type Row,
 	type Seat,
+	SeatStatus,
+	seatMapBuilder,
 } from "./services/seating";
 import "./style.css";
 
@@ -13,14 +13,14 @@ export const BookMyShow = React.memo(function BookMyShow() {
 	const layouts = seatMapBuilder();
 
 	return (
-		<div className="my-4 font-['Be_Vietnam_Pro','Calibri'] w-full">
+		<div className="my-4 w-full font-['Be_Vietnam_Pro','Calibri']">
 			<div>
-				<p className="font-bold text-lg text-center">
+				<p className="text-center font-bold text-lg">
 					Dynamic Rendering of Seat Layout like{" "}
 					<span className="text-[#eb4e62]">BookMyShow</span> and{" "}
 					<span className="text-[#6e52fa]">District</span>
 				</p>
-				<p className="my-4 font-bold text-center text-gray-700">
+				<p className="my-4 text-center font-bold text-gray-700">
 					More details on{" "}
 					<a
 						href="https://github.com/ShubhamVerma1811/frontend-prep"
@@ -32,7 +32,7 @@ export const BookMyShow = React.memo(function BookMyShow() {
 			</div>
 
 			<div className="px-4">
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+				<div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
 					{layouts.map((areas, index) => (
 						<SeatLayout key={generateUUID()} areas={areas} index={index} />
 					))}
@@ -48,9 +48,9 @@ function SeatLayout({ areas, index }: { areas: Area[]; index: number }) {
 			{areas?.map((area) => (
 				<AreaComp area={area} key={`0-${area.id}`} />
 			))}
-			<div className="flex justify-center my-10">
+			<div className="my-10 flex justify-center">
 				<img
-					className="w-100 "
+					className="w-100"
 					src="https://cdn.district.in/movies-web/_next/static/media/screen-img-light.b7b18ffd.png"
 					alt="screen preview"
 				/>
@@ -66,7 +66,7 @@ function AreaComp({ area }: { area: Area }) {
 	}).format(area.price);
 	return (
 		<div key={generateUUID()}>
-			<p className="text-center font-bold my-3 text-2xl">
+			<p className="my-3 text-center font-bold text-2xl">
 				{area.name}: {inrPrice}
 			</p>
 			<div>
@@ -82,9 +82,9 @@ function RowComp({ row }: { row: Row }) {
 	if (!row) return <div className="size-9" />;
 
 	return (
-		<div className="flex flex-row items-center my-4" key={generateUUID()}>
-			<div className="size-9 flex items-center justify-center mr-1 bg-white">
-				<span className="font-bold text-center w-10  text-xl text-gray-500">
+		<div className="my-4 flex flex-row items-center" key={generateUUID()}>
+			<div className="mr-1 flex size-9 items-center justify-center bg-white">
+				<span className="w-10 text-center font-bold text-gray-500 text-xl">
 					{row.name}
 				</span>
 			</div>
@@ -111,7 +111,7 @@ function SeatComp({ seat }: { seat: Seat }) {
 					<button
 						type="button"
 						onClick={() => setSelected((p) => !p)}
-						className={`border size-full rounded-lg flex items-center justify-center ${selected ? "bg-[#6e52fa] border-[#6e52fa]" : ""}`}
+						className={`flex size-full items-center justify-center rounded-lg border ${selected ? "border-[#6e52fa] bg-[#6e52fa]" : ""}`}
 					>
 						<p
 							className={`font-medium ${selected ? "text-white" : "text-black"}`}
@@ -126,7 +126,7 @@ function SeatComp({ seat }: { seat: Seat }) {
 			return (
 				<SeatWrapper>
 					<div
-						className={`border border-gray-400 size-full rounded-lg flex items-center justify-center`}
+						className={`flex size-full items-center justify-center rounded-lg border border-gray-400`}
 					>
 						<p className="text-gray-400">
 							<svg
@@ -180,15 +180,15 @@ function ZoomableLayout({
 
 	return (
 		<div className="w-full">
-			<div className="border border-gray-200 rounded-lg p-2">
-				<div className="flex items-center justify-between gap-2 mb-2">
+			<div className="rounded-lg border border-gray-200 p-2">
+				<div className="mb-2 flex items-center justify-between gap-2">
 					<p className="text-center font-bold text-xl">{title}</p>
 
 					<div className="flex items-center justify-end gap-2">
 						<button
 							type="button"
 							onClick={zoomOut}
-							className="px-3 py-1 border border-gray-300 rounded-md text-sm font-semibold"
+							className="rounded-md border border-gray-300 px-3 py-1 font-semibold text-sm"
 							aria-label="Zoom out"
 						>
 							-
@@ -196,7 +196,7 @@ function ZoomableLayout({
 						<button
 							type="button"
 							onClick={resetZoom}
-							className="px-3 py-1 border border-gray-300 rounded-md text-sm font-semibold"
+							className="rounded-md border border-gray-300 px-3 py-1 font-semibold text-sm"
 							aria-label="Reset zoom"
 						>
 							Reset
@@ -204,12 +204,12 @@ function ZoomableLayout({
 						<button
 							type="button"
 							onClick={zoomIn}
-							className="px-3 py-1 border border-gray-300 rounded-md text-sm font-semibold"
+							className="rounded-md border border-gray-300 px-3 py-1 font-semibold text-sm"
 							aria-label="Zoom in"
 						>
 							+
 						</button>
-						<span className="text-xs text-gray-500 w-12 text-right">
+						<span className="w-12 text-right text-gray-500 text-xs">
 							{Math.round(scale * 100)}%
 						</span>
 					</div>
@@ -217,13 +217,13 @@ function ZoomableLayout({
 
 				<div
 					ref={containerRef}
-					className="overflow-x-auto overflow-y-auto max-h-[80vh]"
+					className="max-h-[80vh] overflow-x-auto overflow-y-auto"
 					style={{
 						overscrollBehavior: "contain",
 					}}
 				>
 					<div
-						className="w-max mx-auto"
+						className="mx-auto w-max"
 						style={{
 							transform: `scale(${scale})`,
 							transformOrigin: "top center",

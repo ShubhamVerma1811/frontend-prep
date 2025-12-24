@@ -22,6 +22,16 @@
 				"noVoid": "off",
 				"noUselessFragments": "off"
 			},
+			"nursery": {
+				"useSortedClasses": {
+					"level": "error",
+					"fix": "safe",
+					"options": {
+						"attributes": ["className", "class"],
+						"functions": ["cn", "clsx", "cva", "twMerge", "tv"]
+					}
+				}
+			},
 			"correctness": {
 				"useExhaustiveDependencies": "warn"
 			},

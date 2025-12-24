@@ -7,7 +7,7 @@ const topics = config["machine-coding-topics"];
 const args = process.argv.slice(2);
 const dayArg = args.find((a) => a.startsWith("--day"));
 
-let day = dayArg
+const day = dayArg
 	? dayArg.replace("--day", "day").replace("=", "")
 	: `day${topics.day}`;
 
