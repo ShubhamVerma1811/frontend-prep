@@ -30,5 +30,18 @@ This is useful when you want state to be “settable” like normal React state,
 
 */
 
-export function useDefault() {}
-// TODO::implementation
+import { useState } from "react";
+
+export function useDefault<T>(initialValue: T, defaultValue: T) {
+	const [internalState, setInternalState] = useState<T | null | undefined>(
+		initialValue
+	);
+
+	const value = internalState ?? defaultValue;
+
+	const setValue = (newValue: T | null | undefined) => {
+		setInternalState(newValue);
+	};
+
+	return [value, setValue] as const;
+}

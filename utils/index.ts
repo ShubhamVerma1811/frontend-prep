@@ -24,3 +24,13 @@ export function wait(ms: number) {
 		}, ms * 1000);
 	});
 }
+
+export function mergeInitialPropsWithDefaultProps<T>(
+	initialProps: T,
+	defaultProps: T
+) {
+	return {
+		...defaultProps,
+		...initialProps,
+	};
+}
