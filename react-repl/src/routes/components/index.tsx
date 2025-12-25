@@ -20,16 +20,19 @@ function RouteComponent() {
 		<div className="container mx-auto">
 			<p>List of avaialble components</p>
 			<div>
-				{Object.keys(components).map((name) => (
-					<div key={name}>
-						<Link
-							to={`/components/${name}`}
-							className="font-bold text-xl hover:underline"
-						>
-							{getComponentNameFromModulePath(name)}
-						</Link>
-					</div>
-				))}
+				{Object.keys(components).map((comp) => {
+					const name = getComponentNameFromModulePath(comp);
+					return (
+						<div key={name}>
+							<Link
+								to={`/components/${name}`}
+								className="font-bold text-xl hover:underline"
+							>
+								{name}
+							</Link>
+						</div>
+					);
+				})}
 			</div>
 		</div>
 	);
