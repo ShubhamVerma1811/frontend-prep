@@ -67,12 +67,6 @@ importers:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
-      '@tanstack/react-router':
-        specifier: ^1.141.6
-        version: 1.141.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@tanstack/react-router-devtools':
-        specifier: ^1.141.6
-        version: 1.141.6(@tanstack/react-router@1.141.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/router-core@1.141.6)(csstype@3.2.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(solid-js@1.9.10)
       '@types/react':
         specifier: ~19.0.14
         version: 19.0.14
@@ -94,12 +88,6 @@ importers:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
-      '@tanstack/react-router':
-        specifier: ^1.141.6
-        version: 1.141.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@tanstack/react-router-devtools':
-        specifier: ^1.141.6
-        version: 1.141.6(@tanstack/react-router@1.141.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/router-core@1.141.6)(csstype@3.2.3)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(solid-js@1.9.10)
       '@types/react':
         specifier: ~19.0.14
         version: 19.0.14
