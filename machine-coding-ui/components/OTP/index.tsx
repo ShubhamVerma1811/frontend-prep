@@ -153,16 +153,19 @@ function OTP(props: OTPProps) {
 
 	return (
 		<React.Fragment>
-			<div
-				role="group"
+			<fieldset
 				aria-labelledby="otp_input"
-				className="flex flex-row items-center gap-2"
+				className="flex w-full max-w-full flex-row items-center justify-center gap-1 sm:gap-2"
 			>
 				{Array(otpLength)
 					?.fill("")
 					?.map?.((_, idx) => {
 						return (
-							<label aria-label={`Input ${idx + 1} of ${otpLength}`} key={idx}>
+							<label
+								aria-label={`Input ${idx + 1} of ${otpLength}`}
+								key={idx}
+								className="min-w-0 max-w-[80px] flex-1 sm:max-w-[100px]"
+							>
 								<input
 									ref={(ref) => {
 										if (ref) inputRefs.current[idx] = ref;
@@ -173,7 +176,7 @@ function OTP(props: OTPProps) {
 									disabled={disabled}
 									readOnly={readOnly}
 									type={mask ? "password" : "text"}
-									className="size-20 rounded-full border text-center text-3xl outline-blue-500 outline-offset-2 focus:outline-4 disabled:border-gray-300 disabled:bg-gray-100"
+									className="aspect-square w-full rounded-full border text-center text-lg outline-blue-500 outline-offset-2 focus:outline-4 disabled:border-gray-300 disabled:bg-gray-100 sm:text-2xl md:text-3xl"
 									inputMode={inputMode === "numeric" ? "numeric" : "text"}
 									// maxLength={1} // this wont work, cursor wont jump if input is already populated, unless you have to write for JS for that
 									data-input-id={idx}
@@ -185,7 +188,7 @@ function OTP(props: OTPProps) {
 							</label>
 						);
 					})}
-			</div>
+			</fieldset>
 		</React.Fragment>
 	);
 }
@@ -201,18 +204,25 @@ export default function OTPDemo() {
 	// }, []);
 
 	return (
-		<OTP
-			// mask
-			length={value.length}
-			inputMode="alphanumeric"
-			disabled={disabled}
-			readOnly={readonly}
-			onComplete={() => {}}
-			value={value}
-			onChange={(value) => {
-				console.log({ value });
-				setValue(value);
-			}}
-		/>
+		<div>
+			<p className="text-center font-bold text-2xl">OTP Component Demo</p>
+			<div className="box-border flex w-full max-w-full p-4 sm:p-6 md:p-8">
+				<div className="w-full max-w-full">
+					<OTP
+						// mask
+						length={value.length}
+						inputMode="alphanumeric"
+						disabled={disabled}
+						readOnly={readonly}
+						onComplete={() => {}}
+						value={value}
+						onChange={(value) => {
+							console.log({ value });
+							setValue(value);
+						}}
+					/>
+				</div>
+			</div>
+		</div>
 	);
 }
