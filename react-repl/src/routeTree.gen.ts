@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ComponentsIndexRouteImport } from './routes/components/index'
+import { Route as ComponentsComponentRouteImport } from './routes/components/$component'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComponentsIndexRoute = ComponentsIndexRouteImport.update({
+  id: '/components/',
+  path: '/components/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsComponentRoute = ComponentsComponentRouteImport.update({
+  id: '/components/$component',
+  path: '/components/$component',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/components/$component': typeof ComponentsComponentRoute
+  '/components': typeof ComponentsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/components/$component': typeof ComponentsComponentRoute
+  '/components': typeof ComponentsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/components/$component': typeof ComponentsComponentRoute
+  '/components/': typeof ComponentsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/components/$component' | '/components'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/components/$component' | '/components'
+  id: '__root__' | '/' | '/components/$component' | '/components/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComponentsComponentRoute: typeof ComponentsComponentRoute
+  ComponentsIndexRoute: typeof ComponentsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/components/': {
+      id: '/components/'
+      path: '/components'
+      fullPath: '/components'
+      preLoaderRoute: typeof ComponentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/$component': {
+      id: '/components/$component'
+      path: '/components/$component'
+      fullPath: '/components/$component'
+      preLoaderRoute: typeof ComponentsComponentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComponentsComponentRoute: ComponentsComponentRoute,
+  ComponentsIndexRoute: ComponentsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
