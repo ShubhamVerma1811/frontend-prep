@@ -194,18 +194,49 @@ function OTP(props: OTPProps) {
 }
 
 export default function OTPDemo() {
+	return (
+		<>
+			<OTPDemoNumeric />
+			<OTPDemoAlphaNumeric />
+			<OTPDemoWithMask />
+		</>
+	);
+}
+
+function OTPDemoNumeric() {
 	const [value, setValue] = useState(Array.from({ length: 6 }, () => ""));
 	const [readonly, _setReadonly] = useState(false);
 	const [disabled, _setDisabled] = useState(false);
-	// const timer = useRef(null);
-
-	// useEffect(() => {
-	// 	setValue(["1", "4", "6", "5", "6"]);
-	// }, []);
-
 	return (
 		<div>
-			<p className="text-center font-bold text-2xl">OTP Component Demo</p>
+			<p className="text-center font-bold text-2xl">OTP Numeric Demo</p>
+			<div className="box-border flex w-full max-w-full p-4 sm:p-6 md:p-8">
+				<div className="w-full max-w-full">
+					<OTP
+						// mask
+						length={value.length}
+						inputMode="numeric"
+						disabled={disabled}
+						readOnly={readonly}
+						onComplete={() => {}}
+						value={value}
+						onChange={(value) => {
+							setValue(value);
+						}}
+					/>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function OTPDemoAlphaNumeric() {
+	const [value, setValue] = useState(Array.from({ length: 6 }, () => ""));
+	const [readonly, _setReadonly] = useState(false);
+	const [disabled, _setDisabled] = useState(false);
+	return (
+		<div>
+			<p className="text-center font-bold text-2xl">OTP Alphanumeric</p>
 			<div className="box-border flex w-full max-w-full p-4 sm:p-6 md:p-8">
 				<div className="w-full max-w-full">
 					<OTP
@@ -217,7 +248,33 @@ export default function OTPDemo() {
 						onComplete={() => {}}
 						value={value}
 						onChange={(value) => {
-							console.log({ value });
+							setValue(value);
+						}}
+					/>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function OTPDemoWithMask() {
+	const [value, setValue] = useState(Array.from({ length: 6 }, () => ""));
+	const [readonly, _setReadonly] = useState(false);
+	const [disabled, _setDisabled] = useState(false);
+	return (
+		<div>
+			<p className="text-center font-bold text-2xl">OTP Alphanumeric</p>
+			<div className="box-border flex w-full max-w-full p-4 sm:p-6 md:p-8">
+				<div className="w-full max-w-full">
+					<OTP
+						mask
+						length={value.length}
+						inputMode="alphanumeric"
+						disabled={disabled}
+						readOnly={readonly}
+						onComplete={() => {}}
+						value={value}
+						onChange={(value) => {
 							setValue(value);
 						}}
 					/>
