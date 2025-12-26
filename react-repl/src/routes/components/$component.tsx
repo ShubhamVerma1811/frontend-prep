@@ -1,3 +1,5 @@
+// TODO:: cleanup later
+
 import { createFileRoute } from "@tanstack/react-router";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -17,8 +19,9 @@ export const Route = createFileRoute("/components/$component")({
 	loader: async ({ params }) => {
 		const component = await getComponent(params.component);
 		const readME = await getComponentReadme(params.component);
-		// @ts-expect-error TODO:: fix thi
+		// @ts-expect-error TODO:: fix this
 		const Page = component?.default;
+		// @ts-expect-error TODO:: fix this
 		const README = (await readME?.())?.default || null;
 
 		return { Page, README };
@@ -52,16 +55,7 @@ function RouteComponent() {
 	if (Page) {
 		return (
 			<React.Fragment>
-				<LocalTab
-					component={<Page />}
-					readme={
-						<div className="prose max-w-none prose-headings:scroll-m-20 prose-code:rounded-sm prose-headings:font-secondary prose-a:text-skin-accent prose-code:text-skin-secondary prose-em:text-skin-secondary prose-headings:text-skin-secondary prose-li:text-skin-secondary prose-strong:text-skin-secondary text-lg text-skin-secondary">
-							{README && <ReactMarkdown>{README}</ReactMarkdown>}
-						</div>
-					}
-				>
-					{/*<Page />*/}
-				</LocalTab>
+				<LocalTab component={<Page />} readme={README} />
 			</React.Fragment>
 		);
 	}
@@ -69,14 +63,26 @@ function RouteComponent() {
 	return <div>Component Not Found</div>;
 }
 
-function LocalTab({ component, readme }) {
+function LocalTab({
+	component,
+	readme,
+}: {
+	component: React.ReactElement;
+	readme: string;
+}) {
 	const [activePane, setActivePane] = useState<"component" | "readme">(
 		"component"
 	);
 
-	let content;
+	let content: React.ReactElement | null = null;
 	if (activePane === "component") content = component;
-	if (activePane === "readme") content = readme;
+	if (activePane === "readme") {
+		content = (
+			<div className="prose max-w-none prose-headings:scroll-m-20 prose-code:rounded-sm prose-headings:font-secondary prose-a:text-skin-accent prose-code:text-skin-secondary prose-em:text-skin-secondary prose-headings:text-skin-secondary prose-li:text-skin-secondary prose-strong:text-skin-secondary text-lg text-skin-secondary">
+				{readme && <ReactMarkdown>{readme}</ReactMarkdown>}
+			</div>
+		);
+	}
 
 	return (
 		<div className="container mx-auto">
