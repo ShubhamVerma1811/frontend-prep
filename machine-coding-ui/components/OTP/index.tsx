@@ -2,14 +2,14 @@ import { mergeInitialPropsWithDefaultProps } from "@frontend-prep/utils";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
 interface OTPProps {
-	value?: string[];
+	value?: string;
 	length: number;
 	inputMode?: "numeric" | "alphanumeric";
 	mask?: boolean;
 	disabled?: boolean;
 	readOnly?: boolean;
 	placeholder?: string;
-	onChange?: (e: string[]) => void;
+	onChange?: (e: string) => void;
 	onComplete?: () => void;
 }
 
@@ -35,17 +35,19 @@ const OTP = React.memo(function OTP(props: OTPProps) {
 	} = defProps;
 
 	const isControlled = valueProp !== undefined;
+	const valuePropArr = valueProp?.split("") || [];
 	const [internalDigits, setDigits] = useState(() =>
-		isControlled ? valueProp : Array.from({ length: DEFAULT_LENGTH }, () => "")
+		isControlled
+			? valuePropArr
+			: Array.from({ length: DEFAULT_LENGTH }, () => "")
 	);
 	const [activeInputId, setActiveId] = useState(0);
 	const inputRefs = useRef<Array<HTMLInputElement>>([]);
 	const controller = useRef(new AbortController());
 
 	// single source of truth
-	const digits = isControlled ? valueProp : internalDigits;
-
-	const isComplete = digits?.filter((d) => d !== "").length === otpLength;
+	const digits = isControlled ? valuePropArr : internalDigits;
+	const isComplete = digits?.filter?.((d) => d !== "").length === otpLength;
 
 	useEffect(() => {
 		controller.current.abort();
@@ -87,8 +89,10 @@ const OTP = React.memo(function OTP(props: OTPProps) {
 	}, [otpLength]);
 
 	useEffect(() => {
-		inputRefs?.current?.[activeInputId]?.focus();
-	}, [activeInputId]);
+		if (!readOnly) {
+			inputRefs?.current?.[activeInputId]?.focus();
+		}
+	}, [activeInputId, readOnly]);
 
 	useEffect(() => {
 		if (isComplete) onComplete?.();
@@ -97,7 +101,7 @@ const OTP = React.memo(function OTP(props: OTPProps) {
 	const updateValue = useCallback(
 		function updateValue(value: string[]) {
 			if (isControlled) {
-				onChange?.(value);
+				onChange?.(value?.join(""));
 			} else {
 				setDigits(value);
 			}
@@ -168,17 +172,13 @@ const OTP = React.memo(function OTP(props: OTPProps) {
 	return (
 		<fieldset
 			aria-labelledby="otp_input"
-			className="flex w-full max-w-full flex-row items-center justify-center gap-1 sm:gap-2"
+			className="flex w-full max-w-full flex-row items-center justify-center gap-1.5"
 		>
 			{Array(otpLength)
 				?.fill("")
 				?.map?.((_, idx) => {
 					return (
-						<label
-							aria-label={`Input ${idx + 1} of ${otpLength}`}
-							key={idx}
-							className="min-w-0 max-w-20 flex-1 sm:max-w-25"
-						>
+						<label aria-label={`Input ${idx + 1} of ${otpLength}`} key={idx}>
 							<input
 								ref={(ref) => {
 									if (ref) inputRefs.current[idx] = ref;
@@ -189,7 +189,7 @@ const OTP = React.memo(function OTP(props: OTPProps) {
 								disabled={disabled}
 								readOnly={readOnly}
 								type={mask ? "password" : "text"}
-								className="aspect-square w-full rounded-full border text-center text-lg outline-blue-500 outline-offset-2 focus:outline-4 disabled:border-gray-300 disabled:bg-gray-100 sm:text-2xl md:text-3xl"
+								className="aspect-square size-14 rounded-full border text-center text-lg outline-blue-500 outline-offset-2 focus:outline-4 disabled:border-gray-300 disabled:bg-gray-100"
 								inputMode={inputMode === "numeric" ? "numeric" : "text"}
 								// maxLength={1} // this wont work, cursor wont jump if input is already populated, unless you have to write for JS for that
 								data-input-id={idx}
@@ -226,7 +226,7 @@ const StateLessDemos: Array<{ name: string; props: OTPProps }> = [
 		props: {
 			disabled: true,
 			length: 5,
-			value: ["1", "2", "3", "4", "5"],
+			value: "12345",
 			inputMode: "alphanumeric",
 		},
 	},
@@ -235,7 +235,7 @@ const StateLessDemos: Array<{ name: string; props: OTPProps }> = [
 		props: {
 			readOnly: true,
 			length: 5,
-			value: ["1", "2", "3", "4", "5"],
+			value: "12345",
 			inputMode: "alphanumeric",
 		},
 	},
@@ -250,9 +250,9 @@ export default function OTPDemo() {
 			{/*StateLess Demos*/}
 			{StateLessDemos.map((demo) => {
 				return (
-					<div key={demo.name}>
+					<div key={demo.name} className="my-8">
 						<p className="text-center font-bold text-xl">{demo.name}</p>
-						<div className="box-border flex w-full max-w-full p-4 sm:p-6 md:p-8">
+						<div className="my-2 box-border flex w-full max-w-full">
 							<div className="w-full max-w-full">
 								<OTP {...demo.props} />
 							</div>
@@ -265,20 +265,20 @@ export default function OTPDemo() {
 }
 
 function OTPDemoNumeric() {
-	const [value, setValue] = useState(Array.from({ length: 6 }, () => ""));
+	const [value, setValue] = useState("");
 	const [readonly, _setReadonly] = useState(false);
 	const [disabled, _setDisabled] = useState(false);
 
 	return (
-		<div>
+		<div className="my-8">
 			<p className="text-center font-bold text-xl">
 				OTP Demo with Controlled state
 			</p>
 			<p className="text-center">State:{value}</p>
-			<div className="box-border flex w-full max-w-full p-4 sm:p-6 md:p-8">
+			<div className="my-2 box-border flex w-full max-w-full">
 				<div className="w-full max-w-full">
 					<OTP
-						length={value.length}
+						length={5}
 						inputMode="numeric"
 						disabled={disabled}
 						readOnly={readonly}
@@ -298,7 +298,7 @@ function OTPDemoWithComplete() {
 	const [isComplete, setIsComplete] = useState(false);
 
 	return (
-		<div>
+		<div className="my-8">
 			<p className="text-center font-bold text-xl">
 				OTP Demo with onComplete callback
 			</p>
@@ -308,7 +308,7 @@ function OTPDemoWithComplete() {
 					? "Input disabled on completion."
 					: "Inputs open for typing..."}
 			</p>
-			<div className="box-border flex w-full max-w-full p-4 sm:p-6 md:p-8">
+			<div className="my-2 box-border flex w-full max-w-full">
 				<div className="w-full max-w-full">
 					<OTP
 						length={4}
