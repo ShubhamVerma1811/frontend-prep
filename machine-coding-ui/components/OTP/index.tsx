@@ -272,7 +272,7 @@ function OTPDemoNumeric() {
 	return (
 		<div>
 			<p className="text-center font-bold text-xl">
-				OTP Demo with onComplete callback
+				OTP Demo with Controlled state
 			</p>
 			<p className="text-center">State:{value}</p>
 			<div className="box-border flex w-full max-w-full p-4 sm:p-6 md:p-8">
