@@ -36,7 +36,7 @@ import { useCallback, useState } from "react";
 export function useToggle(initialValue = false) {
 	const [on, setOn] = useState(initialValue);
 
-	const toggle = useCallback(function toggle(value: boolean) {
+	const toggle = useCallback(function toggle(value?: boolean) {
 		if (typeof value === "boolean") {
 			setOn(value);
 			return;

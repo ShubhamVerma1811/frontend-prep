@@ -25,9 +25,12 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.8",
 		"@tanstack/router-plugin": "^1.141.7",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.2",
 		"@types/node": "^24.0.10",
 		"@types/react": "^19.2.7",
 		"@types/react-dom": "^19.2.3",
+		"jsdom": "^27.4.0",
 		"typescript": "~5.8.3",
 		"vitest": "^3.2.4"
 	},
