@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { composeAsync } from "./compose-async";
+import { composeAsync } from "../current/compose-async";
 
 const a = vi.fn((x: number, y: number): Promise<number> => {
 	return Promise.resolve(x * y);

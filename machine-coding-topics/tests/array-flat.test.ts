@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { flat } from "./array-flat";
+import { flat } from "../current/array-flat";
 
 describe("Array flat test suite", () => {
 	describe("Basic flattening", () => {

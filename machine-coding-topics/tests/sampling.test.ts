@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { sampler } from "./sampling";
+import { sampler } from "../current/sampling";
 
 function message(i: number) {
 	return `Hello ${i}`;

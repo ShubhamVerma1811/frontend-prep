@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ownGroupBy } from "./object-groupBy";
+import { ownGroupBy } from "../current/object-groupBy";
 
 describe("Object groupby test suite", () => {
 	it("should match the output", () => {

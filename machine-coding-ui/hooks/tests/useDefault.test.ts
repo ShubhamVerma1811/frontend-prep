@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { useDefault } from "./useDefault";
+import { useDefault } from "../current/useDefault";
 
 describe("useDefault", () => {
 	it("should return initialValue when it's not null/undefined", () => {

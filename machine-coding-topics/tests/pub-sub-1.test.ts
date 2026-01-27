@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { Move } from "./pub-sub-1";
+import { Move } from "../current/pub-sub-1";
 
 describe("Pub Sub 1 test suite", () => {
 	let consoleSpy: ReturnType<typeof vi.spyOn>;

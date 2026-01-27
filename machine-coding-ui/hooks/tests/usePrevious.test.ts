@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { usePrevious } from "./usePrevious";
+import { usePrevious } from "../current/usePrevious";
 
 describe("usePrevious", () => {
 	describe("basic functionality", () => {
