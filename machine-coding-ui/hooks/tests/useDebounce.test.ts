@@ -11,13 +11,13 @@ describe("useDebounce", () => {
 	});
 
 	it("returns initial value immediately on first render", () => {
-		const { result } = renderHook(() => useDebounce("hello", 1000));
+		const { result } = renderHook(() => useDebounce("hello", { delay: 1000 }));
 		expect(result.current).toBe("hello");
 	});
 
 	it("delays value update until delay passes", async () => {
 		const { result, rerender } = renderHook(
-			({ value }) => useDebounce(value, 1000),
+			({ value }) => useDebounce(value, { delay: 1000 }),
 			{ initialProps: { value: "initial" } }
 		);
 
@@ -30,7 +30,7 @@ describe("useDebounce", () => {
 
 	it("ignores intermediate values, only uses last value after delay", async () => {
 		const { result, rerender } = renderHook(
-			({ value }) => useDebounce(value, 500),
+			({ value }) => useDebounce(value, { delay: 500 }),
 			{ initialProps: { value: "A" } }
 		);
 
@@ -49,7 +49,7 @@ describe("useDebounce", () => {
 
 	it("cleans up timer on unmount", async () => {
 		const clearTimeoutSpy = vi.spyOn(global, "clearTimeout");
-		const { unmount } = renderHook(() => useDebounce("test", 1000));
+		const { unmount } = renderHook(() => useDebounce("test", { delay: 1000 }));
 
 		unmount();
 		expect(clearTimeoutSpy).toHaveBeenCalledTimes(1);
@@ -57,7 +57,7 @@ describe("useDebounce", () => {
 
 	it("cancels previous timer when new value arrives", async () => {
 		const { result, rerender } = renderHook(
-			({ value }) => useDebounce(value, 1000),
+			({ value }) => useDebounce(value, { delay: 1000 }),
 			{ initialProps: { value: "first" } }
 		);
 
@@ -72,7 +72,7 @@ describe("useDebounce", () => {
 
 	it("respects new delay value", async () => {
 		const { result, rerender } = renderHook(
-			({ value, delay }) => useDebounce(value, delay),
+			({ value, delay }) => useDebounce(value, { delay: delay }),
 			{ initialProps: { value: "test", delay: 1000 } }
 		);
 
@@ -83,7 +83,7 @@ describe("useDebounce", () => {
 
 	it("works with zero delay (immediate update)", async () => {
 		const { result, rerender } = renderHook(
-			({ value }) => useDebounce(value, 0),
+			({ value }) => useDebounce(value, { delay: 0 }),
 			{ initialProps: { value: "old" } }
 		);
 
@@ -94,7 +94,7 @@ describe("useDebounce", () => {
 
 	it("works with numbers", async () => {
 		const { result, rerender } = renderHook(
-			({ value }) => useDebounce(value, 500),
+			({ value }) => useDebounce(value, { delay: 500 }),
 			{ initialProps: { value: 42 } }
 		);
 
@@ -108,7 +108,7 @@ describe("useDebounce", () => {
 		const obj2 = { id: 2, name: "second" };
 
 		const { result, rerender } = renderHook(
-			({ value }) => useDebounce(value, 500),
+			({ value }) => useDebounce(value, { delay: 500 }),
 			{ initialProps: { value: obj1 } }
 		);
 
@@ -122,7 +122,7 @@ describe("useDebounce", () => {
 	it("handles zero delay with fake timers", async () => {
 		vi.useFakeTimers();
 		const { result, rerender } = renderHook(
-			({ value }) => useDebounce(value, 0),
+			({ value }) => useDebounce(value, { delay: 0 }),
 			{ initialProps: { value: "test" } }
 		);
 
@@ -135,7 +135,7 @@ describe("useDebounce", () => {
 
 	it("stable reference when value/delay unchanged", () => {
 		const { result, rerender } = renderHook(
-			({ value }) => useDebounce(value, 1000),
+			({ value }) => useDebounce(value, { delay: 1000 }),
 			{ initialProps: { value: "stable" } }
 		);
 
