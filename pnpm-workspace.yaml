@@ -5,3 +5,4 @@ packages:
   - "design-patterns"
   - "react-repl"
   - "utils"
+  - "submodules/**"

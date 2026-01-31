@@ -1,0 +1,3 @@
+[submodule "submodules/apurvkhare/react-interview-preparation"]
+	path = submodules/apurvkhare/react-interview-preparation
+	url = git@github.com:apurvkhare/react-interview-preparation.git

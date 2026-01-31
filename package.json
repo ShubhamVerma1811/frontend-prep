@@ -12,6 +12,7 @@
 		"make": "bun run scripts/copy-template.ts",
 		"generate:topics": "bun run scripts/generate-day.ts --type=topics",
 		"generate:design-patterns": "bun run scripts/generate-day.ts --type=design-patterns",
+		"lb:batch": "bun run scripts/run-lb-batch.ts",
 		"ui": "pnpm -F react-repl",
 		"dp": "pnpm -F design-patterns",
 		"topics": "pnpm -F machine-coding-topics"
@@ -22,8 +23,16 @@
 			"react-dom": "19.1.0"
 		}
 	},
+	"dependencies": {
+		"@tailwindcss/vite": "^4.1.18",
+		"@tanstack/react-router": "^1.141.6",
+		"@tanstack/react-router-devtools": "^1.141.6",
+		"@vitejs/plugin-react": "^4.7.0",
+		"tailwindcss": "^4.1.18",
+		"vite": "^7.3.0"
+	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.3.8",
+		"@biomejs/biome": "2.3.9",
 		"@tanstack/router-plugin": "^1.141.7",
 		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/react": "^16.3.2",
@@ -33,13 +42,5 @@
 		"jsdom": "^27.4.0",
 		"typescript": "~5.8.3",
 		"vitest": "^3.2.4"
-	},
-	"dependencies": {
-		"@tailwindcss/vite": "^4.1.18",
-		"@tanstack/react-router": "^1.141.6",
-		"@tanstack/react-router-devtools": "^1.141.6",
-		"@vitejs/plugin-react": "^4.7.0",
-		"tailwindcss": "^4.1.18",
-		"vite": "^7.3.0"
 	}
 }
